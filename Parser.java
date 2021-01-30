@@ -1,4 +1,7 @@
 public class Parser {
+    static BinaryTree<String> termbaum = parseString("(5 + 3 + 4 + 6)");
+
+
     public static BinaryTree<String> parseString(String string) {
         string = string.trim().replaceAll(",", ".");
         BinaryTree<String> tree = new BinaryTree<>("");
@@ -61,7 +64,7 @@ public class Parser {
         if (stringArray[index - 1] == ')') {
             tree.setLeftTree(parseString(string.substring(1, index - 1)));
         } else {
-            tree.setLeftTree(new BinaryTree<>(string.substring(0, index)));
+            tree.setLeftTree(parseString(string.substring(0, index)));
         }
         return tree;
     }

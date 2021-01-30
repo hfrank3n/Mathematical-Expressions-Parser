@@ -40,7 +40,7 @@ public class Parser {
         return tree;
     }
 
-    public static BinaryTree<String> calculateLowLevelOperator(String string, char[] stringArray, int index, int operatorPosition, BinaryTree<String> tree) {
+    private static BinaryTree<String> evaluateLowLevelOperator(String string, char[] stringArray, int index, int operatorPosition, BinaryTree<String> tree) {
         String currOperator = String.valueOf(stringArray[index]);
 
         if (!tree.isEmpty() && (tree.getContent().equals("*") || tree.getContent().equals("/"))) {
@@ -58,7 +58,7 @@ public class Parser {
         return tree;
     }
 
-    public static BinaryTree<String> calculateHigherLevelOperator(String string, char[] stringArray, int index, BinaryTree<String> tree) {
+    private static BinaryTree<String> evaluateHigherLevelOperator(String string, char[] stringArray, int index, BinaryTree<String> tree) {
         String currOperator = String.valueOf(stringArray[index]);
 
         tree = new BinaryTree<>(currOperator);

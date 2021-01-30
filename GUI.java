@@ -7,7 +7,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GUI extends Frame {
-    private Button btnDraw = new Button();      // Baum zeichnen
+    private Button btnDraw = new Button();
+    private TextField inputField = new TextField();
 
 
     public GUI(String title) {
@@ -18,8 +19,8 @@ public class GUI extends Frame {
             }
         });
 
-        int frameWidth = 493;
-        int frameHeight = 600;
+        int frameWidth = 300;
+        int frameHeight = 350;
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -31,20 +32,27 @@ public class GUI extends Frame {
         Panel cp = new Panel(null);
         add(cp);
 
-        btnDraw.setBounds(352, 208, 115, 25);
+        inputField.setBounds(20,20,120,25);
+        inputField.addActionListener(e -> paintTree(inputField.getText()));
+        cp.add(inputField);
+
+        btnDraw.setBounds(20, 60, 120, 25);
         btnDraw.setLabel("zeichne Baum");
-        btnDraw.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                btnDraw_ActionPerformed(evt);
-            }
+        btnDraw.addActionListener(e -> {
+            paintTree(inputField.getText());
         });
         cp.add(btnDraw);
         setVisible(true);
     }
 
-    public void btnDraw_ActionPerformed(ActionEvent evt) {
-        BaumZeichner zeichner = new BaumZeichner(1000, 400, Parser.termbaum);
+    public static void paintTree(String input) {
+        if (input.isEmpty()) {
+            paintTree(Parser.defaultInput);
+        } else {
+            BaumZeichner zeichner = new BaumZeichner(1000, 400, Parser.parseString(input));
+        }
     }
+
 
     public static void main(String[] args) {
         new GUI("GUI");

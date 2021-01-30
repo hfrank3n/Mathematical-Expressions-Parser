@@ -1,5 +1,6 @@
 public class Parser {
-    static BinaryTree<String> termbaum = parseString("(5 + 3 + 4 + 6)");
+    static final String defaultInput = "5+3";
+    //static BinaryTree<String> termbaum = parseString("(5 + 3 + 4 + 6)");
 
 
     public static BinaryTree<String> parseString(String string) {
